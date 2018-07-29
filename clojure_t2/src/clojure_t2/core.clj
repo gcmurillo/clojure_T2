@@ -11,7 +11,28 @@
     )   
 )
 
+; Permutacion con repeticion: P = n!/(a! b! c!)
+; se usara la funcion factorial desarrollada previamente
+(defn perm_con_rep [n a b c]
+  ; Se validara que a + b + c <= n
+  (if (> (+ a b c) n)
+    nil
+    (/ (factorial n) 
+       (* (factorial a) (factorial b) (factorial c)))
+  )
+)
+
+; Combinacion sin repeticion C = n!/((n-p)!p!) 
+(defn comb_sin_rep [n p]
+  (/ (factorial n)
+     (* ((comp factorial -) n p) ; usando composicion de funciones
+        (factorial p))
+  )
+)
+
 (defn -main
   [& args]
   (print (factorial 20) "\n")
+  (print (perm_con_rep 10 2 3 5) "\n")
+  (print (comb_sin_rep 5 5) "\n")
 )
